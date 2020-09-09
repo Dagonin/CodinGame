@@ -1,7 +1,6 @@
 // https://www.codingame.com/training/medium/fair-numbering
 
 const N = parseInt(readline());
-
 function NumCount(num) {
     let control;
     let size;
