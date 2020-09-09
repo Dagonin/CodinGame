@@ -1,7 +1,4 @@
-/**
- * Auto-generated code below aims at helping you parse
- * the standard input according to the problem statement.
- **/
+// https://www.codingame.com/training/medium/fair-numbering
 
 const N = parseInt(readline());
 
