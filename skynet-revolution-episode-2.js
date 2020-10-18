@@ -65,7 +65,7 @@ function PathFinder(Agent) {
 
         // console.error(ThisLayer,index,LayerIndex,paths)
 
-        // Counting distance of Links to cut from Agent
+        // Counting distance of Links to cut from Agent (Doesn't work properly above layer 3)
 
         NextLayer += paths.length;
 
@@ -105,11 +105,20 @@ function PathFinder(Agent) {
     let LinksAmount = 0;
     let LowestLayer = LinksThisLayer[0].Layer;
     LinksThisLayer.forEach((l, i) => {
-        if(l.Links>LinksAmount && LowestLayer==l.Layer){
-            LinksAmount = l.Links;
-            LinkToCut = [l.a,l.b]
+        if(LowestLayer!=0){
+            if(l.Links>LinksAmount){
+                LinkToCut = [l.a,l.b];
+                LinksAmount = l.Links;
+            }
+        }else{
+            if(l.Links>LinksAmount && LowestLayer==l.Layer){
+                LinksAmount = l.Links;
+                LinkToCut = [l.a,l.b];
+            }
         }
-        // console.error(l)
+
+
+        console.error(l)
     })
 
    
@@ -122,10 +131,10 @@ function PathFinder(Agent) {
 // game loop
 while (true) {
     const SI = parseInt(readline()); // The index of the node on which the Skynet agent is positioned this turn
-    let cut = PathFinder(SI);
-    console.error(CutLinks)
-    console.log(cut[0],cut[1])
-    CutLinks.push([cut[0],cut[1]])
+        let cut = PathFinder(SI);
+        console.log(cut[0],cut[1])
+        CutLinks.push([cut[0],cut[1]])
+
     // console.log(cut[0], cut[1]);
     UsedLinks = [];
     LinksToCheck = [];
@@ -135,3 +144,13 @@ while (true) {
     // Example: 0 1 are the indices of the nodes you wish to sever the link between
 
 }
+
+
+
+
+// Todo
+
+
+//    Kiedy Layer == 0 wybrac Link do przeciecia, do którego trasa ma mniej Linków co przecięcia po drodze
+
+// Jakiś system który zapisuje scieżkę do każdego Linka?
