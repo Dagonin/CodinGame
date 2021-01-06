@@ -1,0 +1,1 @@
+let i=readline().split(' '),a=i[0],b=i[1],e=i[2],c=i[3],d="";e=e/1;c=c/1;while(1){if(b==c){d=''} if(b<c){d="N";c--}if(b>c){d="S";c++}if(a<e){d+="W";e--}if(a>e){d+="E";e++}console.log(d)}
